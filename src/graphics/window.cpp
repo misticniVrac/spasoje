@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "window.h"
-
+#include "../input.h"
 namespace spasoje{
 
 Window::Window(char *title,int width,int height)
@@ -37,6 +37,13 @@ Window::init()
 	}
 
 	glfwMakeContextCurrent(this->gWindow);
+	
+	//input callbacks
+	
+	glfwSetKeyCallback(this->gWindow, key_callback);
+	
+	glfwSetMouseButtonCallback(this->gWindow, mouse_button_callback);
+
 
 	if(glewInit() != GLEW_OK)
 	{
@@ -52,6 +59,9 @@ Window::destroy()
 {
 	std::cout << "exiting window " << this->m_title << "\n";
 	glfwDestroyWindow(this->gWindow);
+
+	glfwTerminate();
+	exit(EXIT_SUCCESS);
 }
 
 bool
@@ -114,5 +124,6 @@ Window::setSize(int height,int width)
 	this->m_width = width;
 	glfwSetWindowSize(this->gWindow, this->m_height, this->m_width);
 }
+
 
 }

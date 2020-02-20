@@ -1,7 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
 
-#include <string>
 namespace spasoje{
 class Window
 {
@@ -10,7 +9,6 @@ class Window
 	bool m_isFullscreen;
 	int m_height,m_width;
 	char *m_title;
-
 	public:
 	Window(char *title,int width=1,int height=1);
 	void init();
