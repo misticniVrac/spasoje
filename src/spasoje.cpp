@@ -14,6 +14,7 @@ int main()
 	char name[] = "spasoje";
 	Window testWindow(name,800,600);
 	testWindow.init();
+	testWindow.setSize(1000,1000);
 	while(testWindow.isOpen())
 	{
 		testWindow.update();		

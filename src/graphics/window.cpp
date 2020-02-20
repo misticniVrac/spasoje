@@ -101,4 +101,18 @@ Window::setFullscreen(bool fs)
 int Window::getWidth(){ return this->m_width; }
 int Window::getHeight(){ return this->m_height; }
 
+void
+Window::clear()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+}
+
+void 
+Window::setSize(int height,int width)
+{
+	this->m_height = height;
+	this->m_width = width;
+	glfwSetWindowSize(this->gWindow, this->m_height, this->m_width);
+}
+
 }
