@@ -12,9 +12,8 @@ using namespace std;
 int main()
 {
 	char name[] = "spasoje";
-	Window testWindow(800,600,name);
+	Window testWindow(name,800,600);
 	testWindow.init();
-	
 	while(testWindow.isOpen())
 	{
 		testWindow.update();		
