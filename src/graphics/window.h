@@ -1,5 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
+#include "../math/vector.h"
 
 namespace spasoje{
 class Window
@@ -15,7 +16,8 @@ class Window
 	void clear();
 	void destroy();
 	void setFullscreen(bool fs=true);
-	void getScreenSize();//TODO: return size 
+	Vector2 getScreenSize();//TODO: return size 
+	Vector2 getSize();
 	void update();
 	void setSize(int height,int width);
 	void setViewortSize(int height,int width);//TODO

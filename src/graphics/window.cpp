@@ -4,6 +4,7 @@
 
 #include "window.h"
 #include "../input.h"
+#include "../math/vector.h"
 namespace spasoje{
 
 Window::Window(char *title,int width,int height)
@@ -26,7 +27,9 @@ Window::init()
 
 	if(this->m_height==1)//if window size has been left default, set window to fullscreen
 	{
-		getScreenSize();
+		Vector2 ss = getScreenSize();
+		this->m_width = ss.x;
+		this->m_height = ss.y;
 		this->m_isFullscreen = true;
 		this->gMonitor=glfwGetPrimaryMonitor();
 	}
@@ -40,10 +43,11 @@ Window::init()
 	
 	//input callbacks
 	
-	glfwSetKeyCallback(this->gWindow, key_callback);
+	glfwSetKeyCallback(this->gWindow, input::key_callback);
 	
-	glfwSetMouseButtonCallback(this->gWindow, mouse_button_callback);
+	glfwSetMouseButtonCallback(this->gWindow,input::mouse_button_callback);
 
+	glfwSetCursorPosCallback(this->gWindow, input::cursor_position_callback);
 
 	if(glewInit() != GLEW_OK)
 	{
@@ -77,15 +81,13 @@ Window::update()
 	glfwPollEvents();
 }
 
-void 
+Vector2
 Window::getScreenSize()
 {
 	
 	 const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-    	 this->m_width = mode->width;
-         this->m_height = mode->height;
-
+	 return Vector2(mode->width,mode->height);	
 
 }
 
@@ -125,5 +127,10 @@ Window::setSize(int height,int width)
 	glfwSetWindowSize(this->gWindow, this->m_height, this->m_width);
 }
 
+Vector2
+Window::getSize()
+{
+	return Vector2(this->m_width,this->m_height);
+}
 
 }

@@ -2,12 +2,12 @@
 
 #include "input.h"
 
+#include "math/vector.h"
 namespace spasoje{
-
+namespace input{
 	
 bool keyPressed(int key)
 {
-
 
 	if(key>=MAX_KEYS_SIZE)
 		return false;
@@ -47,5 +47,18 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 
 }
 
+void 
+cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	mousePosition.x = xpos;
+	mousePosition.y = ypos;
+}
 
+Vector2
+getMousePosition()
+{
+	return mousePosition;
+}
+
+}
 }

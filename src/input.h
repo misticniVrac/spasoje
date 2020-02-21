@@ -4,7 +4,10 @@
 #define MAX_KEYS_SIZE 420
 #define MAX_BUTTONS_SIZE 26
 
+#include "math/vector.h"
+
 namespace spasoje{
+namespace input{
 
 static bool m_keys[MAX_KEYS_SIZE]={0};//keyboard
 
@@ -16,6 +19,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
+void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+
+static Vector2 mousePosition;
+
+Vector2 getMousePosition();
+
 //TODO
 //
 //	mousePosition
@@ -24,7 +33,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 //
 
 }
-
+}
 //mouse
 #define 	MOUSE_BUTTON_1   -2
 #define 	MOUSE_BUTTON_2   -3
