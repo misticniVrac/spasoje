@@ -6,9 +6,9 @@
 
 namespace spasoje{
 
-static bool m_keys[MAX_KEYS_SIZE];//keyboard
+static bool m_keys[MAX_KEYS_SIZE]={0};//keyboard
 
-static bool m_buttons[MAX_BUTTONS_SIZE];//mouse
+static bool m_buttons[MAX_BUTTONS_SIZE]={0};//mouse
 
 bool keyPressed(int key);
 

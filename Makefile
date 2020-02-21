@@ -8,7 +8,7 @@ CC := g++
 LIB :=  -lGLEW -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor 
 
 
-src = $(wildcard src/*.cpp) $(wildcard src/graphics/*.cpp)
+src = $(wildcard src/*.cpp) $(wildcard src/graphics/*.cpp) $(wildcard src/maths/*.cpp)
 obj =  $(addprefix obj/, $(addsuffix .o, $(notdir $(basename $(src)))))
 
 build:
