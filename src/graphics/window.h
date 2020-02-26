@@ -16,7 +16,7 @@ class Window
 	void clear();
 	void destroy();
 	void setFullscreen(bool fs=true);
-	Vector2 getScreenSize();//TODO: return size 
+	Vector2 getScreenSize();
 	Vector2 getSize();
 	void update();
 	void setSize(int height,int width);

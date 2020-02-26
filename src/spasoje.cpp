@@ -4,6 +4,7 @@
 #include "graphics/window.h"
 #include "input.h"
 #include "math/vector.h"
+#include "graphics/shader.h"
 
 using namespace spasoje;
 using namespace std;
@@ -26,9 +27,14 @@ int main()
 	pos3 = pos1+pos2;
 	cout << pos1 << "\n" << pos2 << "\n" << pos3 << "\n";
 
+	Shader testShader("res/shaders/shader.v","res/shaders/shader.f");
+	
+	testShader.start();
+	
 	while(testWindow.isOpen())
 	{
-	//	cout << input::getMousePosition() << "\n";
+
+		testWindow.clear();
 		testWindow.update();		
 		if(input::keyPressed(KEY_Q))
 		{
