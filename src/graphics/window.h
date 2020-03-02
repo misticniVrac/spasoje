@@ -10,6 +10,8 @@ class Window
 	bool m_isFullscreen;
 	int m_height,m_width;
 	char *m_title;
+	int x_pos=0,y_pos=0;
+	int o_height,o_width;
 	public:
 	Window(char *title,int width=1,int height=1);
 	void init();
@@ -25,5 +27,9 @@ class Window
 	bool isFullscreen();
 	int getHeight();
 	int getWidth();
+	
+
 };
+
+	void window_resize_callback(GLFWwindow* window, int width, int height);
 }

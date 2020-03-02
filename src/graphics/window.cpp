@@ -49,6 +49,11 @@ Window::init()
 
 	glfwSetCursorPosCallback(this->gWindow, input::cursor_position_callback);
 
+	glfwSetWindowSizeCallback(this->gWindow, window_resize_callback);
+
+	glfwGetWindowSize(this->gWindow,&(this->m_width),&(this->m_height));
+
+
 	if(glewInit() != GLEW_OK)
 	{
 		std::cout << "could not start GLEW" << "\n";
@@ -77,6 +82,9 @@ Window::isOpen()
 void 
 Window::update()
 {
+	
+	glfwGetWindowSize(this->gWindow,&(this->m_width),&(this->m_height));
+	
 	glfwSwapBuffers(this->gWindow);
 	glfwPollEvents();
 }
@@ -99,6 +107,10 @@ Window::setFullscreen(bool fs)
 
 	if(gMonitor = fs?glfwGetPrimaryMonitor():nullptr)
 	{
+		glfwGetWindowPos(this->gWindow, &(this->x_pos), &(this->y_pos));//save old cordinates
+	
+		glfwGetWindowSize(this->gWindow,&(this->o_width),&(this->o_height));
+
 		this->m_isFullscreen = true;
 		const	GLFWvidmode* mode = glfwGetVideoMode(this->gMonitor);
 		glfwSetWindowMonitor(this->gWindow,this->gMonitor,0, 0, mode->width, mode->height, mode->refreshRate);
@@ -106,7 +118,7 @@ Window::setFullscreen(bool fs)
 	else
 	{
 		this->m_isFullscreen = false;
-		glfwSetWindowMonitor(this->gWindow,this->gMonitor,0, 0, this->m_width,this->m_height, 0);
+		glfwSetWindowMonitor(this->gWindow,this->gMonitor,this->x_pos, this->y_pos, this->o_width,this->o_height, 0);
 	}
 }
 
@@ -132,5 +144,12 @@ Window::getSize()
 {
 	return Vector2(this->m_width,this->m_height);
 }
+
+void 
+window_resize_callback(GLFWwindow* window, int width, int height)
+{
+}
+
+
 
 }

@@ -33,7 +33,6 @@ int main()
 	
 	while(testWindow.isOpen())
 	{
-
 		testWindow.clear();
 		testWindow.update();		
 		if(input::keyPressed(KEY_Q))
@@ -41,6 +40,10 @@ int main()
 			testWindow.destroy();
 
 	
+		}
+		if(input::getKeyPressed(KEY_F))
+		{
+			testWindow.setFullscreen(!testWindow.isFullscreen());
 		}
 	}
 
