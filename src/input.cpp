@@ -25,6 +25,35 @@ bool keyPressed(int key)
 
 }
 
+	
+bool getKeyPressed(int key)
+{
+
+	if(key>=MAX_KEYS_SIZE)
+		return false;
+	if(key>-2)
+	{
+		bool temp = m_keys[key];
+		m_keys[key] = false;
+		return temp;
+	}	
+
+	//key is mouse button (-2...-9)
+	key = key * -1;
+	key-=2;
+
+	if(key>-10 && key<MAX_BUTTONS_SIZE)
+	{
+		bool temp = m_buttons[key];
+		m_buttons[key] = false;
+		return temp;
+	}	
+
+
+	return false;
+
+}
+
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {

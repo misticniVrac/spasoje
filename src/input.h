@@ -15,6 +15,8 @@ static bool m_buttons[MAX_BUTTONS_SIZE]={0};//mouse
 
 bool keyPressed(int key);
 
+bool getKeyPressed(int key);
+
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
