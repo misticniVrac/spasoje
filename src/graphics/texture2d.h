@@ -1,3 +1,7 @@
+/*
+
+	TODO: setting texture parameters
+*/
 #pragma once
 
 #include "../utils/stb_image.h"

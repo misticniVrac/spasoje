@@ -22,6 +22,10 @@ Texture2D::Texture2D(const char *path)
 		std::cout << "failed to load texture " << path << "\n";
 		return;
 	}
+	
+	glGenTextures(1,&(this->ID));
+	
+	glBindTexture(GL_TEXTURE_2D, this->ID); 
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->m_width, this->m_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 	glGenerateMipmap(GL_TEXTURE_2D);

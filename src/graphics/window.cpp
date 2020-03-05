@@ -148,6 +148,7 @@ Window::getSize()
 void 
 window_resize_callback(GLFWwindow* window, int width, int height)
 {
+	    glViewport(0, 0, width, height);
 }
 
 
