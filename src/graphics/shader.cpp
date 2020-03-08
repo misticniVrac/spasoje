@@ -4,6 +4,9 @@
 
 #include "shader.h"
 #include "../filehandler.h"
+#include "../math/vector.h"
+#include "../math/matrix.h"
+
 
 #include <GLFW/glfw3.h>
 
@@ -80,6 +83,7 @@ void
 Shader::start()
 {
 	glUseProgram(this->id);
+
 }
 
 void
@@ -88,4 +92,49 @@ Shader::stop()
 	glUseProgram(0);
 }
 
+void 
+Shader::setBool(const char *name,bool val)
+{
+	glUniform1i(glGetUniformLocation(this->id, name), (int)val); 
 }
+
+void 
+Shader::setFloat(const char *name,float val)
+{
+	glUniform1f(glGetUniformLocation(this->id, name), val); 
+}
+
+
+void 
+Shader::setInt(const char *name,int val)
+{
+	glUniform1i(glGetUniformLocation(this->id, name), val); 
+}
+
+void 
+Shader::setVector2(const char *name,Vector2 val)
+{
+	glUniform2f(glGetUniformLocation(this->id, name), val.x,val.y); 
+}
+
+
+void 
+Shader::setVector3(const char *name,Vector3 val)
+{
+	glUniform3f(glGetUniformLocation(this->id, name), val.x,val.y,val.z);
+
+}
+void
+Shader::setMatrix4(const char *name,Matrix4 val)
+{
+	float arr[16];
+	  for (int n=0; n<4; n++)
+		for (int m=0; m<4; m++)
+		  {
+			 arr[n*4+m]=val.elements[n][m];
+		  }
+
+	glUniformMatrix4fv(glGetUniformLocation(this->id,name),1,GL_FALSE,arr);
+}
+}
+
