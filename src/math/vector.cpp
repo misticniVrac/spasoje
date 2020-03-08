@@ -1,7 +1,7 @@
 #include "vector.h"
 
 #include <iostream>
-
+#include <math.h>
 namespace spasoje{
 
 
@@ -64,6 +64,12 @@ Vector2::compare(const Vector2& val)
 	return this->x==val.x && this->y == val.y;
 }
 
+Vector2
+Vector2::normalize(const Vector2 &val)
+{
+	float length_of_v = sqrt((val.x * val.x) + (val.y * val.y));
+	      return Vector2(val.x / length_of_v, val.y / length_of_v);
+}
 
 Vector2 operator+(const Vector2& left,const Vector2& right) 
 {
@@ -145,6 +151,12 @@ Vector3::Vector3(const float val)
 	this->y = val;
 	this->z = val;
 }
+Vector3::Vector3(const Vector2 val,float z)
+{
+	this->x = val.x;
+	this->y = val.y;
+	this->z = z;
+}
 Vector3&
 Vector3::add(Vector3 val)
 {
@@ -190,6 +202,14 @@ Vector3::compare(const Vector3& val)
 {
 	return this->x==val.x && this->y == val.y && this->z == val.z;
 }
+
+Vector3
+Vector3::normalize(const Vector3 &val)
+{
+	float length_of_v = sqrt((val.x * val.x) + (val.y * val.y) + (val.z * val.z));
+	      return Vector3(val.x / length_of_v, val.y / length_of_v,val.z / length_of_v);
+}
+
 
 
 Vector3 operator+(const Vector3& left,const Vector3& right) 

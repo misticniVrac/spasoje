@@ -21,6 +21,9 @@ struct Vector2
 
 	bool compare(const Vector2 &val);
 
+
+	static Vector2 normalize(const Vector2 &val);
+
 	Vector2& operator+=(const Vector2& val);
 	Vector2& operator-=(const Vector2& val);
 	Vector2& operator*=(const Vector2& val);
@@ -50,6 +53,7 @@ struct Vector3
 	Vector3();
 	Vector3(const float x,const float y,const float z);
 	Vector3(const float val);
+	Vector3(Vector2 val,float z);
 
 	Vector3 &add(Vector3 val);
 	Vector3 &subtract(const Vector3 &val);
@@ -57,6 +61,9 @@ struct Vector3
 	Vector3 &divide(Vector3 val);
 
 	bool compare(const Vector3 &val);
+
+
+	static Vector3 normalize(const Vector3 &val);
 
 	Vector3& operator+=(const Vector3& val);
 	Vector3& operator-=(const Vector3& val);
