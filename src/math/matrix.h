@@ -17,11 +17,11 @@ struct Matrix4
 	
 		static Matrix4 translate(const Matrix4& matrix, const Vector3& val);
 		static Matrix4 scale(const Matrix4& matrix, const Vector3& val);
-		static Matrix4 rotate(const Matrix4& matrix, float angle, const Vector3& val);
+		static Matrix4 rotate(Matrix4& matrix, float angle, const Vector3& val);
 
 		static Matrix4 identity();
 		static Matrix4 diagonally(float val);	
-
+		static Matrix4 orthographic(float left,float right, float bottom,float top,float near,float far);
 		
 
 };

@@ -23,6 +23,22 @@ Matrix4::identity()
 	return diagonally(1.0);
 }
 
+
+Matrix4
+Matrix4::orthographic(float left,float right, float bottom,float top,float near,float far)
+{
+	Matrix4 res = Matrix4::identity();
+
+	res.elements[0][0] = 2.0 / (right-left);
+	res.elements[1][1] = 2.0 / (top-bottom);
+	res.elements[2][2] = -2.0 / (far - near);
+
+	res.elements[3][0] = - (right+left) / (right-left);
+	res.elements[3][1] = - (top+bottom) / (top-bottom);
+	res.elements[3][2] = - (far+near) / (far - near);
+	return res;
+}
+
 void
 Matrix4::multiply(const Matrix4& val)
 {
@@ -44,11 +60,11 @@ Matrix4::multiply(const Matrix4& val)
 Matrix4
 Matrix4::translate(const Matrix4& matrix,const Vector3& val)
 {
-	Matrix4 res = Matrix4::diagonally(1.0);
+	Matrix4 res = matrix;
 
-	res.elements[0][3] = matrix.elements[0][3] + val.x;
-	res.elements[1][3] = matrix.elements[1][3] + val.y;
-	res.elements[2][3] = matrix.elements[2][3] + val.z;
+	res.elements[3][0] = matrix.elements[3][0] + val.x;
+	res.elements[3][1] = matrix.elements[3][1] + val.y;
+	res.elements[3][2] = matrix.elements[3][2] + val.z;
 
 	return res;
 }
@@ -57,7 +73,7 @@ Matrix4
 Matrix4::scale(const Matrix4& matrix,const Vector3& val)
 {
 	
-	Matrix4 res;
+	Matrix4 res = matrix;
 
 	res.elements[0][0] = matrix.elements[0][0] * val.x;
 	res.elements[1][1] = matrix.elements[1][1] * val.y;
@@ -70,9 +86,9 @@ Matrix4::scale(const Matrix4& matrix,const Vector3& val)
 
 
 Matrix4 
-Matrix4::rotate(const Matrix4& matrix, float angle, const Vector3& val)
+Matrix4::rotate(Matrix4& matrix, float angle, const Vector3& val)
 {
-	Matrix4 res = Matrix4::diagonally(1.0);
+	Matrix4 res = Matrix4::identity();
 	
 	float rad = toRadians(angle);
 	
@@ -95,9 +111,11 @@ Matrix4::rotate(const Matrix4& matrix, float angle, const Vector3& val)
 	res.elements[2][0] = omc * axis.z * axis.x + s * axis.y;
 	res.elements[2][1] = omc * axis.z * axis.y - s * axis.x;
 	res.elements[2][2] = c + omc * axis.z * axis.z;
+	
 
-	res.multiply(matrix);
-	return res;
+	matrix.multiply(res);
+
+	return matrix;
 
 }
 
