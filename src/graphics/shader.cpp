@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "shader.h"
-#include "../filehandler.h"
+#include "../utils/resourcemanager.h"
 #include "../math/vector.h"
 #include "../math/matrix.h"
 
@@ -18,8 +18,8 @@ Shader::Shader(const char* vertexPath,const char* fragmentPath)
 {
 	string vertex,fragment;
 	
-	vertex	= read_file(vertexPath);
-	fragment = read_file(fragmentPath);
+	vertex	= resourceManager::readFile(vertexPath);
+	fragment = resourceManager::readFile(fragmentPath);
 
 	unsigned int v_id,f_id;
 	int success;
