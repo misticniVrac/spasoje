@@ -40,7 +40,12 @@ Window::init()
 	}
 
 	glfwMakeContextCurrent(this->gWindow);
-	
+		
+	//turns of vsync
+	//with vsync on there is input lag 
+	//glfwSwapInterval(0);
+
+
 	//input callbacks
 	
 	glfwSetKeyCallback(this->gWindow, input::key_callback);
@@ -61,6 +66,8 @@ Window::init()
 	}
 
 	std::cout << "OpenGl v "<< glGetString(GL_VERSION) << "\n";	
+
+
 }
 
 void
@@ -81,10 +88,7 @@ Window::isOpen()
 
 void 
 Window::update()
-{
-	
-	glfwGetWindowSize(this->gWindow,&(this->m_width),&(this->m_height));
-	
+{	
 	glfwSwapBuffers(this->gWindow);
 	glfwPollEvents();
 }
@@ -142,13 +146,14 @@ Window::setSize(int height,int width)
 Vector2
 Window::getSize()
 {
+	glfwGetWindowSize(this->gWindow,&(this->m_width),&(this->m_height));
 	return Vector2(this->m_width,this->m_height);
 }
 
 void 
 window_resize_callback(GLFWwindow* window, int width, int height)
 {
-	glViewport(0, 0, width, height);
+	glViewport(0, 0,width, height);
 }
 
 

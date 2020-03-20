@@ -3,6 +3,10 @@
 #include "input.h"
 
 #include "math/vector.h"
+
+
+#include <math.h>
+
 namespace spasoje{
 namespace input{
 	
@@ -79,13 +83,20 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 void 
 cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
+	//Flipts it so it starts from bottom-left,default is top-left
+
+	int h;
+	glfwGetWindowSize(window, nullptr, &h);
+
 	mousePosition.x = xpos;
-	mousePosition.y = ypos;
+	mousePosition.y = abs(ypos-h); //flip it 
 }
 
 Vector2
 getMousePosition()
 {
+	//returns mouse position relative to the screen, starting from bottom-left
+	//@TODO: make it relative to the world space
 	return mousePosition;
 }
 
