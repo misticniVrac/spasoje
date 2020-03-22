@@ -5,11 +5,14 @@
 
 CC := g++
 
+
+FT := -I/usr/include/freetype2 #location of freetype headers, change this 
+
 C := gcc
 
-LIB :=   src/lualib/lualib.a  -lGLEW -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -ldl 
+LIB :=   src/lualib/lualib.a  -lGLEW -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -ldl -lfreetype 
 
-lua = $(wildcard src/lualib/src/*.c)
+lua = $(wildcard src/lualib/src/*.c) 
 luao = $(wildcard src/lualib/obj/*)
 
 
@@ -20,7 +23,7 @@ obj =  $(addprefix obj/, $(addsuffix .o, $(notdir $(basename $(src)))))
 
 build:
 	@mkdir -p  obj
-	$(CC) -c ${src} 
+	$(CC) -c ${src} ${FT}	
 	@mv *.o obj/
 	$(CC)  ${obj} -o spasoje ${LIB}
 

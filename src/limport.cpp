@@ -39,9 +39,7 @@ int lGraphics(lua_State *L)
 {
 
 	getGlobalNamespace(L).
-		addFunction("render",renderer::drawSprite)
-		.addFunction("genSprite",renderer::genSprite);
-
+		addFunction("render",renderer::drawSprite);
 	getGlobalNamespace(L).
 		beginClass<Texture2D>("Texture2D")
 		.addConstructor<void(*) (const char*)>()

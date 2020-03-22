@@ -15,10 +15,11 @@ private:
 	unsigned int ID;	
 	int m_width,m_height,m_channels;
 public:
+	Texture2D();
 	Texture2D(const char *path);
 	
 	int getID();
-
+	inline void setID(unsigned int ID){this->ID = ID;}
 };
 
 }
