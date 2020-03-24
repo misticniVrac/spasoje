@@ -16,6 +16,7 @@ namespace renderer{
 
 
 Matrix4 projection;
+Matrix4 camera=Matrix4::identity();
 
 static GLuint quadVAO = -1;
 
@@ -111,11 +112,10 @@ drawSprite(Shader &shader,Texture2D &texture, Vector2 position, Vector2 size, GL
       	sprite = Matrix4::translate(sprite,Vector3(position,0));
 	
 
-	Matrix4 view = Matrix4::identity();	
 	
 	Matrix4 projection = getProjection();
 
-	sprite.multiply(view);
+	sprite.multiply(camera);
 	sprite.multiply(projection);
 
 	shader.setMatrix4("sprite",sprite);

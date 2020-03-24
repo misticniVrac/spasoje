@@ -2,6 +2,7 @@
 #include "math/vector.h"
 #include "graphics/renderer.h"
 #include "input.h"
+#include "graphics/font.h"
 
 #include <string>
 #include <iostream>
@@ -39,7 +40,8 @@ int lGraphics(lua_State *L)
 {
 
 	getGlobalNamespace(L).
-		addFunction("render",renderer::drawSprite);
+		addFunction("drawSprite",renderer::drawSprite).
+		addFunction("drawText",renderer::drawText);
 	getGlobalNamespace(L).
 		beginClass<Texture2D>("Texture2D")
 		.addConstructor<void(*) (const char*)>()
@@ -49,6 +51,11 @@ int lGraphics(lua_State *L)
 		beginClass<Shader>("Shader")
 		.addConstructor<void(*) (const char*,const char*)>()
 		.endClass();
+	getGlobalNamespace(L).
+		beginClass<Font>("Font")
+		.addConstructor<void(*) (const char*)>()
+		.endClass();
+
 
 
 	return 0;
